@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:black;
+		}
+		table{
+			align:center;
+			border:red 1px solid;
+			width:100%;
+		}
+		td
+		{
+			border: green 1px solid;
+			margin: 10px 10px;
+		}
+		tr.row td{
+			text-decoration:italic;
+		}
+		td.name{
+			width:20%;
+		}
+		td.des{
+			width:60%;
+		}
+		td.date{
+			width:10%;
+		}
+		td.pr{
+			width:5%;
+		}
+		td.func{
+			width:3%;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	{% if (todos is defined) and todos %}
+	<h3>Result of the Search : ToDO List</h3>
+	<table>
+	    <tr id="row">
+	    	<td class="name">Task Name</td>
+	    	<td class="desc">Task Description</td>
+	    	<td class="date">Date</td>
+	    	<td class="pr">Project</td>
+		<td class="func">Delete</td>
+		<td class="func">Modify</td>
+	    </tr>
+		{% for todo in todos %}
+		<tr id="datas">
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="desc">{{ todo["desc"] }}</td>
+			<td class="date">{{ todo["date"] }}</td>
+			<td class="pr">{{ todo["pr"] }}</td>
+			<td><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></td>
+			<td><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<h4>No Result Found !!</h4>
+	{% endif %}
+	</table>
+	<a href="/">Return to TaskList</a>
+</body>
+</html>

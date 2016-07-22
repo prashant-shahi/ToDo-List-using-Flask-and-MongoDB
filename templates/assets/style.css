@@ -1,0 +1,31 @@
+table{
+	border:red 1px solid;
+	margin-left:10px;
+	margin-right:10px;
+	width:90%;
+}
+td
+{
+	border: green 1px solid;
+}
+tr.row td{
+	text-decoration:italic;
+}
+td.name{
+	width:20%;
+}
+td.des{
+	width:60%;
+}
+td.date{
+	width:10%;
+}
+td.pri{
+	width:5%;
+}
+td.OId{
+	width:15%;
+}
+td.func{
+	width:3%;
+}

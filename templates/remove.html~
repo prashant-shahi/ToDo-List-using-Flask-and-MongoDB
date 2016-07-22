@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:black;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Removing tasks from TODO List</h3>
+	<form action="/action2" method="GET">
+		<input type="radio" name="refer" value="name" checked> Task Name 
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="desc"> Description
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="date">Date
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="pr">Priority
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="_id">ObjectId
+		<br/>
+		Reference : <input type="name" name="data" placeholder="which-to-remove?"></input>
+		<br/>
+		<button type="submit"> Remove Task </button>
+		<br/>
+	</form>
+	<a href="/">Return to TaskList</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:black;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Adding tasks into TODO List</h3>
+	<form action="/action" method="GET">
+		<input type="text" name="name" placeholder="Task Name"></input>
+		<input type="text" name="desc" placeholder="Task Description"></input>
+		<input type="text" name="date" placeholder="Date"></input>
+		<input type="text" name="pr" placeholder="Priority"></input>
+		<br/>
+		<input type="
+		<button type="submit"> Add Task </button>
+		<br/>
+	</form>
+	<a href="/">Return to TaskList</a>
+</body>
+</html>

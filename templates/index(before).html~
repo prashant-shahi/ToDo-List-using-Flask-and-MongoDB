@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:black;
+		}
+		table{
+			align:center;
+			border:red 1px solid;
+			width:90%;
+		}
+		td
+		{
+			border: green 1px solid;
+			margin: 10px 10px;
+		}
+		tr.row td{
+			text-decoration:italic;
+		}
+		td.name{
+			width:20%;
+		}
+		td.des{
+			width:70%;
+		}
+		td.date{
+			width:15%;
+		}
+		td.pri{
+			width:5%;
+		}		
+
+		#add{
+			background-color:#1122FF;
+		}
+		#add:hover{
+			color:white;
+			background-color:black;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<table>
+	    <tr id="row">
+	    	<td class="name">Task Name</td>
+	    	<td class="desc">Task Description</td>
+	    	<td class="date">Date</td>
+	    	<td class="pr">Project</td>
+	    </tr>
+	{% for todo in todos %}
+		<tr id="datas">
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="desc">{{ todo["desc"] }}</td>
+			<td class="date">{{ todo["date"] }}</td>
+			<td class="pr">{{ todo["pr"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	<br/>
+	<a href="/add" id="add"><button> Add a Task </button></a>
+	<a href="/remove" id="remove"><button> Remove a Task  </button></a>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:black;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Update tasks with a reference</h3>
+	<form action="/action3" method="GET">
+		What-to-Update ?
+		<input type="radio" name="refer" value="name" checked> Task Name 
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="desc"> Description
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="date">Date
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input type="radio" name="refer" value="pr">Priority
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<br/>
+		New Data : <input type="text" name="data">
+		<button type="submit"> Update Task </button>
+		<br/>
+	</form>
+	<a href="/">Return to TaskList</a>
+</body>
+</html>
