@@ -16,11 +16,7 @@ heading = "ToDo Reminder"
 def tasks ():
 	#Display the File
 	todos_l = todos.find()
-	print todos_l
-	chk="notempty"
-	if(todos_l==[]):
-		chk="empty"
-	return render_template('index.html',check=chk,todos=todos_l,t=title,h=heading)
+	return render_template('index.html',todos=todos_l,t=title,h=heading)
 
 #@app.route("/add")
 #def add():
@@ -43,7 +39,7 @@ def remove ():
 	todos.remove({"_id":ObjectId(key)})
 	return redirect("/")
 
-@app.route("/update", methods=['POST'])
+@app.route("/update")
 def update ():
 	id=request.values.get("_id")
 	task=todos.find({"_id":ObjectId(id)})
@@ -61,7 +57,7 @@ def action3 ():
 	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
 	return redirect("/")
 
-@app.route("/search")
+@app.route("/search", methods=['POST'])
 def search():
 	#Searching a Task with various references
 
