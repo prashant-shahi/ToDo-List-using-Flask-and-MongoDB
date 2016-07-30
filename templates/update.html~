@@ -14,18 +14,26 @@
 	<h1>{{h}}</h1>
 	<hr>
 	<h3>Update tasks with a reference</h3>
-	<form action="/action3" method="GET">
-		What-to-Update ?
-		<input type="radio" name="refer" value="name" checked> Task Name 
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="radio" name="refer" value="desc"> Description
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="radio" name="refer" value="date">Date
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="radio" name="refer" value="pr">Priority
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<br/>
-		New Data : <input type="text" name="key">
+	<form action="/action3" method="POST">
+	{% for task in tasks %}
+		Unique Object ID : {{ task['_id'] }}<br/>
+	<input type="text" name="_id" value="{{ task['_id'] }}" hidden>
+
+	<table>
+	<tr>
+	<td>Task Name</td><td> : </td><td><input type="text" name="name" value="{{ task['name'] }}" placeholder="{{ task['name'] }}"></td>
+	</tr>
+	<tr>
+	<td>Description</td><td> : </td><td><textarea type="text" name="desc" rows=3 cols=30 placeholder="{{ task['desc'] }}"> {{ task['desc'] }} </textarea></td>
+	</tr>
+	<tr>
+	<td>Date</td><td> : </td><td><input type="text" name="date" value="{{ task['date'] }}" placeholder="{{ task['date'] }}"></td>
+	</tr>
+	<tr>
+	<td>Priority</td><td> : </td><td><input type="text" name="pr" value="{{ task['pr'] }}" placeholder="{{ task['pr'] }}"></td>
+	</tr>
+	</table>
+	{% endfor %}
 		<button type="submit"> Update Task </button>
 		<br/>
 	</form>

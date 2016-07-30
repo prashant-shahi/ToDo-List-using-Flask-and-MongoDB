@@ -1,77 +1,42 @@
 <html>
+
 	<head>
 		<title>{{t}}</title>
-	</head>
-	<style>	
-		h1{
-			margin: 10px;
-			text-align:center;
-			font-family:"Arial Black", Gadget, sans-serif;
-		}
-		table{
-			border:red 1px solid;
-			margin-left:10px;
-			margin-right:10px;
-			width:90%;
-		}
-		body{
-			background-color:black;
-		}
-		td
-		{
-			border: green 1px solid;
-		}
-		tr.row td{
-			text-decoration:italic;
-		}
-		td.name{
-			width:20%;
-		}
-		td.des{
-			width:60%;
-		}
-		td.date{
-			width:10%;
-		}
-		td.pri{
-			width:5%;
-		}
-		td.OId{
-			width:15%;
-		}
-		td.func{
-			width:3%;
-		}
+		<link rel="stylesheet" type="text/css" href="/static/assets/style.css">
+		<style>	
+			table:first-child{
+			}
+			#add{
+				background-color:#1122FF;
+			}
+			#add:hover{
+				color:white;
+				background-color:black;
+			}
+		</style>
 
-		#add{
-			background-color:#1122FF;
-		}
-		#add:hover{
-			color:white;
-			background-color:black;
-		}
-	</style>
+	</head>
 <body>
 	<h1>{{h}}</h1>
 	<hr>
-	{% if todos !="" %}
-		<form action="/search"	method="GET">
-			Search with any reference : 
-			<input type="radio" name="refer" value="name" checked> Task Name 
+	{% if check=="notempty" %}
+		<form action="/search"	method="POST" >
+			Search with any reference :
+			<input type="radio" name="refer" value="name" checked> Task Name
 			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<input type="radio" name="refer" value="desc"> Description
 			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" name="refer" value="date">Date
+			<input type="radio" name="refer" value="date"> Date
 			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" name="refer" value="pr">Priority
-			<br/>
+			<input type="radio" name="refer" value="pr"> Priority
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<input type="text" name="key" placeholder="Search a Task" />
 			<button type="submit">Search</button>
 		</form>
 		<table>
 		    <tr id="row">
 		    	<td class="name">Task Name</td>
-		    	<td class="desc">Task Description</td>
+		    	<td class="desc">Description Name</td>
 		    	<td class="date">Date</td>
 		    	<td class="pr">Priority</td>
 			<td class="func">Remove</td>
@@ -87,18 +52,18 @@
 				<td><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
 			</tr>
 		{% endfor %}
+		</table>
 	{% else %}
-		<h4>No Result Found !!</h4>
+		<h4>No Tasks in the List !!</h4>
 	{% endif %}
 
-	</table>
-	<br/>
+	<hr/>
 	<label>Add a Task : </label>
-	<form action="/action" method="GET">
-		<input type="text" name="name" placeholder="Task Name"></input>
-		<input type="text" name="desc" placeholder="Task Description"></input>
-		<input type="text" name="date" placeholder="Date"></input>
-		<input type="text" name="pr" placeholder="Priority"></input>
+	<form action="/action" method="POST">
+		<input type="text" name="name" placeholder="Taskname" />
+		<textarea name="desc" rows="1" cols="30" placeholder="Enter Description here..." required></textarea>
+		<input type="text" name="date" placeholder="Date" />
+		<input type="text" name="pr" placeholder="Priority" />
 		<button type="submit"> Add Task </button>
 		<br/>
 	</form>

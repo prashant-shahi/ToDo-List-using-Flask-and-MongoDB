@@ -1,0 +1,37 @@
+h1{
+/*	font-family:"Arial Black", Gadget, sans-serif;*/
+	font-family:"Times New Romans", Gadget, sans-serif;
+}
+body{
+	color:black;
+	background-color:white;
+}
+table{
+	border:red 1px solid;
+	width:80%;
+}
+td
+{
+	border: green 1px solid;
+}
+tr.row td{
+	text-decoration:italic;
+}
+td.name{
+	width:20%;
+}
+td.des{
+	width:60%;
+}
+td.date{
+	width:10%;
+}
+td.pri{
+	width:5%;
+}
+td.OId{
+	width:15%;
+}
+td.func{
+	width:3%;
+}
