@@ -1,3 +1,4 @@
+/templates/*.html~
 test.py~
 README.md~
-*.html~
+.gitignore~
