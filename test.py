@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect # For flask implementation
+from flask import Flask, render_template,request,redirect,url_for # For flask implementation
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
 
@@ -11,12 +11,49 @@ title = "TODO with Flask"
 heading = "ToDo Reminder"
 #modify=ObjectId()
 
-@app.route("/")
+def redirect_url():
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for('index')
+
 @app.route("/list")
-def tasks ():
-	#Display the File
+def lists ():
+	#Display the all Tasks
 	todos_l = todos.find()
-	return render_template('index.html',todos=todos_l,t=title,h=heading)
+	a1="active"
+	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading)
+
+@app.route("/")
+@app.route("/uncompleted")
+def tasks ():
+	#Display the Uncompleted Tasks
+	todos_l = todos.find({"done":"no"})
+	a2="active"
+	return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading)
+
+
+@app.route("/completed")
+def completed ():
+	#Display the Completed Tasks
+	todos_l = todos.find({"done":"yes"})
+	a3="active"
+	return render_template('index.html',a3=a3,todos=todos_l,t=title,h=heading)
+
+@app.route("/done")
+def done ():
+	#Done-or-not ICON
+	id=request.values.get("_id")
+	task=todos.find({"_id":ObjectId(id)})
+	if(task[0]["done"]=="yes"):
+		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"no"}})
+	else:
+		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
+	redir=redirect_url()	# Re-directed URL i.e. PREVIOUS URL from where it came into this one
+
+#	if(str(redir)=="http://localhost:5000/search"):
+#		redir+="?key="+id+"&refer="+refer
+
+	return redirect(redir)
 
 #@app.route("/add")
 #def add():
@@ -29,8 +66,8 @@ def action ():
 	desc=request.values.get("desc")
 	date=request.values.get("date")
 	pr=request.values.get("pr")
-	todos.insert({ "name":name, "desc":desc, "date":date, "pr":pr })
-	return redirect("/")
+	todos.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	return redirect("/list")
 
 @app.route("/remove")
 def remove ():
@@ -48,7 +85,6 @@ def update ():
 @app.route("/action3")
 def action3 ():
 	#Updating a Task with various references
-
 	name=request.values.get("name")
 	desc=request.values.get("desc")
 	date=request.values.get("date")
@@ -57,7 +93,7 @@ def action3 ():
 	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
 	return redirect("/")
 
-@app.route("/search", methods=['POST'])
+@app.route("/search")
 def search():
 	#Searching a Task with various references
 
@@ -69,5 +105,13 @@ def search():
 		todos_l = todos.find({refer:key})
 	return render_template('searchlist.html',todos=todos_l,t=title,h=heading)
 
+@app.route("/about")
+def about():
+	credits="Testing Credit Page<br>--- HELLO PEOPLE<br>---  CB567@gmail.com<br>--- Lol...<br><br><br><a href='/'>GOTO MainPage</a>"
+	return(credits)
+
 if __name__ == "__main__":
     app.run(debug=True)
+# Careful with the debug mode..
+
+

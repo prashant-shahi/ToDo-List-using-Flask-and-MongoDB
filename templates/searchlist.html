@@ -1,20 +1,16 @@
 <html>
 	<head>
 		<title>{{t}}</title>
-		<link rel="stylesheet" type="text/css" href="/static/assets/style.css">
-		<style>
-			table{
-				width:70%;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
 	</head>
 <body>
 	<h1>{{h}}</h1>
 	<hr>
 	{% if todos[0] %}
 	<h3>Result of the Search : ToDO List</h3>
-	<table id="none">
+	<table>
 	    <tr id="row">
+	    	<td class="status">Status</td>
 	    	<td class="name">Task Name</td>
 	    	<td class="desc">Task Description</td>
 	    	<td class="date">Date</td>
@@ -23,13 +19,14 @@
 		<td class="func">Modify</td>
 	    </tr>
 		{% for todo in todos %}
-		<tr id="datas">
+		<tr class="datas">
+			<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></a></td>
 			<td class="name">{{ todo["name"] }}</td>
 			<td class="desc">{{ todo["desc"] }}</td>
 			<td class="date">{{ todo["date"] }}</td>
 			<td class="pr">{{ todo["pr"] }}</td>
-			<td><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></td>
-			<td><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a></td>
+			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
 		</tr>
 		{% endfor %}
 	{% else %}
