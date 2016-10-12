@@ -26,7 +26,7 @@
 		`pip install pymongo'
 		
 
-## Run
+## Run :
 	Run MongoDB
 		1) Start MongoDB
 			`sudo service mongod start`
@@ -40,7 +40,7 @@
 		`http://localhost:5000'
 
 
-## And Thanks to Twitter for emoji support with Twemoji :
+## Thanks to Twitter for emoji support with Twemoji :
 	Twitter Open Source : https://github.com/twitter/twemoji
 
 
