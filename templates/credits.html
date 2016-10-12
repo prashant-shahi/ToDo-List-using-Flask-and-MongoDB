@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<style>
+			body {
+				background-color:white;
+			}
+			.credits {
+				margin:10px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<a href="/"><h1>{{ h }}</h1></a>
+	<hr>
+	<h3>Credits :</h3>
+	<div class='credits'>
+		Prashant Shahi<br>
+		CoolBoi567@gmail.com		
+	</div>
+	<hr>
+	<p>Made with ❤️ from Karnali, Nepal ☕</p>
+</body>
+</html>

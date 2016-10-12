@@ -25,6 +25,7 @@
 		`pip install bson`
 		`pip install pymongo'
 		
+
 ## Run
 	Run MongoDB
 		1) Start MongoDB
@@ -35,5 +36,14 @@
 	Run the Flask file(test.py)
 		`python test.py`
 
-	Browse with any Browser and Done
+	Browse with any Browser to the following link and DONE !
 		`http://localhost:5000'
+
+
+## And Thanks to Twitter for emoji support with Twemoji :
+	Twitter Open Source : https://github.com/twitter/twemoji
+
+
+
+Made with ❤️ from Karnali, Nepal
+

@@ -82,7 +82,7 @@ def update ():
 	task=todos.find({"_id":ObjectId(id)})
 	return render_template('update.html',tasks=task,h=heading,t=title)
 
-@app.route("/action3")
+@app.route("/action3", methods=['POST'])
 def action3 ():
 	#Updating a Task with various references
 	name=request.values.get("name")
@@ -93,7 +93,7 @@ def action3 ():
 	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
 	return redirect("/")
 
-@app.route("/search")
+@app.route("/search", methods=['GET'])
 def search():
 	#Searching a Task with various references
 
@@ -107,8 +107,7 @@ def search():
 
 @app.route("/about")
 def about():
-	credits="Testing Credit Page<br>--- HELLO PEOPLE<br>---  CB567@gmail.com<br>--- Lol...<br><br><br><a href='/'>GOTO MainPage</a>"
-	return(credits)
+	return render_template('credits.html',t=title,h=heading)
 
 if __name__ == "__main__":
     app.run(debug=True)
