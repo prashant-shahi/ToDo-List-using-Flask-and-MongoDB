@@ -39,6 +39,8 @@
 	Browse with any Browser to the following link and DONE !
 		`http://localhost:5000'
 
+### Screenshot :
+
 ![Screenshot of the Output](https://github.com/CoolBoi567/To-Do-List---Flask-MongoDB-Example/blob/master/static/images/screenshot.png?raw=true "Screenshot of Output")
 
 
