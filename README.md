@@ -1,6 +1,6 @@
 # To-Do-List
 
-<To-Do-List is mini-project made with Flask and MongoDB>
+To-Do-List is mini-project made with Flask and MongoDB.
 
 ## Built using :
 
