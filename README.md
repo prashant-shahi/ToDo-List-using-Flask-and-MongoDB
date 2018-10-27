@@ -15,16 +15,12 @@ To-Do-List is mini-project made with Flask and MongoDB.
 	Install Python ( If you don't have already )
 		`sudo apt-get install python`
 		
-	Install Flask ( Web Framework ) and Import Request, Redirect and  Render_Template(Jinja)
-		`pip install flask`
-		
 	Install MongoDB ( Make sure you install it properly )
 		`sudo apt-get install -y mongodb-org`
+
+	Install dependencies of the application (Flask, Bson and PyMongo)
+        pip install -r requirements.txt
 			
-	Import bson for handling ObjectId and Pymongo for database connector
-		`pip install bson`
-		`pip install pymongo'
-		
 
 ## Run :
 	Run MongoDB
@@ -33,8 +29,8 @@ To-Do-List is mini-project made with Flask and MongoDB.
 		2) Stop MongoDB
 			`sudo service mongod stop`
 	
-	Run the Flask file(test.py)
-		`python test.py`
+	Run the Flask file(app.py)
+		`python app.py`
 
 	Browse with any Browser to the following link and DONE !
 		`http://localhost:5000'
@@ -48,5 +44,4 @@ To-Do-List is mini-project made with Flask and MongoDB.
 	Twitter Open Source : https://github.com/twitter/twemoji
 
 
-
-Made with ❤️ from Karnali, Nepal
+Made with ❤️ from Nepal
