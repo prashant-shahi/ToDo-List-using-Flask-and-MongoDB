@@ -18,8 +18,8 @@ To-Do-List is mini-project made with Flask and MongoDB.
 	Install MongoDB ( Make sure you install it properly )
 		`sudo apt-get install -y mongodb-org`
 
-	Install dependencies of the application (Flask, Bson and PyMongo)
-        pip install -r requirements.txt
+	Install Dependencies of the application (Flask, Bson and PyMongo)
+		pip install -r requirements.txt
 			
 
 ## Run :
