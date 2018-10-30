@@ -13,27 +13,27 @@ To-Do-List is mini-project made with Flask and MongoDB.
 ## Set up environment for using this repo:
 
 	Install Python ( If you don't have already )
-		`sudo apt-get install python`
+		$ sudo apt-get install python
 		
 	Install MongoDB ( Make sure you install it properly )
-		`sudo apt-get install -y mongodb-org`
+		$ sudo apt-get install -y mongodb-org
 
 	Install Dependencies of the application (Flask, Bson and PyMongo)
-		pip install -r requirements.txt
+		$ pip install -r requirements.txt
 
 ## Run the application
 
 	Run MongoDB
 		1) Start MongoDB
-			`sudo service mongod start`
+			$ sudo service mongod start
 		2) Stop MongoDB
-			`sudo service mongod stop`
+			$ sudo service mongod stop
 	
 	Run the Flask file(app.py)
-		`python app.py`
+		$ python app.py
 
 	Browse with any Browser to the following link and DONE !
-		`http://localhost:5000'
+		http://localhost:5000
 
 	To exit press Ctrl+C
 
@@ -42,16 +42,16 @@ To-Do-List is mini-project made with Flask and MongoDB.
 ### Set up environment
 
 	Pulling light MongoDB Docker image
-		`$ docker pull mvertes/alpine-mongo`
+		$ docker pull mvertes/alpine-mongo
 
 	Building and running MongoDB server in docker
-		`$ docker run -d -p 27017:27017 --name mongoclient mvertes/alpine-mongo`
+		$ docker run -d -p 27017:27017 --name mongoclient mvertes/alpine-mongo
 
 	Building and running Flask server in docker
-		`$ docker run -d -p 5000:5000 --link mongoclient --name todo-flaskapp .`
+		$ docker run -d -p 5000:5000 --link mongoclient --name todo-flaskapp .
 
 	Browse with any Browser to the following link and DONE !
-		`http://localhost:5000'
+		http://localhost:5000
 	
 ###  Running the application
 	
