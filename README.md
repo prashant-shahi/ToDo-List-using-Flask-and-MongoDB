@@ -48,8 +48,10 @@ To-Do-List is mini-project made with Flask and MongoDB.
 		`$ docker run -d -p 27017:27017 --name mongoclient mvertes/alpine-mongo`
 
 	Building and running Flask server in docker
-		`$ docker run -d -p 27017:27017 --link mongoclient --name todo-flaskapp .`
-	
+		`$ docker run -d -p 5000:5000 --link mongoclient --name todo-flaskapp .`
+
+	Browse with any Browser to the following link and DONE !
+		`http://localhost:5000'
 	
 ###  Running the application
 	
