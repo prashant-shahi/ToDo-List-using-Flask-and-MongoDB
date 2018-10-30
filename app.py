@@ -1,6 +1,7 @@
 from flask import Flask, render_template,request,redirect,url_for # For flask implementation
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
+from bson.errors import InvalidId # For catching InvalidId exception for ObjectId
 
 client = MongoClient('localhost', 27017)    #Configure the connection to the database
 db = client.camp2016    #Select the database
@@ -99,8 +100,14 @@ def search():
 
 	key=request.values.get("key")
 	refer=request.values.get("refer")
-	if(key=="_id"):
-		todos_l = todos.find({refer:ObjectId(key)})
+	if(refer=="id"):
+		try:
+			todos_l = todos.find({refer:ObjectId(key)})
+			if not todos_l:
+				return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,error="No such ObjectId is present")
+		except InvalidId as err:
+	        pass
+	        return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,error="Invalid ObjectId format given")
 	else:
 		todos_l = todos.find({refer:key})
 	return render_template('searchlist.html',todos=todos_l,t=title,h=heading)
@@ -111,6 +118,4 @@ def about():
 
 if __name__ == "__main__":
     app.run(debug=True)
-# Careful with the debug mode..
-
-
+	# Careful with the debug mode..

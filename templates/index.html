@@ -15,6 +15,11 @@
 		<li><a href="/completed" class="{{ a3 }}">Completed</a></li>
 		<li style="float:right"><a href="/about">About</a></li>
 	</ul>
+	{% if error %}
+		<div class="alert alert-danger">
+	  		<strong>Error!</strong> {{ error }}
+		</div>
+	{% end %}
 	<hr>
 	{% if todos[0] %}
 	<div span="right">
@@ -24,6 +29,7 @@
 		<td></td><td></td>
 		<td><big><b>Search Reference:</b></big></td>
 		<td><select name="refer" required>
+			<option value="id">Unique ID</option>
 			<option value="name">Task Name</option>
 			<option value="desc">Description</option>
 			<option value="date">Date</option>
