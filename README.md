@@ -1,5 +1,3 @@
-<a href="https://github.com/coolboi567/ToDo-List-using-Flask-and-MongoDB-with-Docker/fork"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
-
 # To-Do-List
 
 To-Do-List is mini-project made with Flask and MongoDB.
