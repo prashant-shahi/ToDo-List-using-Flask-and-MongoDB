@@ -1,6 +1,6 @@
 # To-Do-List
 
-To-Do-List is mini-project made with Flask and MongoDB.
+To-Do-List is mini-project made with Flask and MongoDB. Dockerfile is also available to make docker image and docker containers.
 
 ## Built using :
 
@@ -43,12 +43,15 @@ To-Do-List is mini-project made with Flask and MongoDB.
 
 	Pulling light MongoDB Docker image
 		$ docker pull mvertes/alpine-mongo
+	
+	Building Flask server docker image
+		$ docker build -t codegeas/flaskapp .
 
-	Building and running MongoDB server in docker
+	Building and running MongoDB server container in docker
 		$ docker run -d -p 27017:27017 --name mongoclient mvertes/alpine-mongo
 
-	Building and running Flask server in docker
-		$ docker run -d -p 5000:5000 --link mongoclient --name todo-flaskapp .
+	Building and running Flask server container in docker
+		$ docker run -d -p 5000:5000 --link mongoclient --name todo-flaskapp codegeas/flaskapp
 
 	Browse with any Browser to the following link and DONE !
 		http://localhost:5000
