@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flask-app
+  labels:
+    name: flask-app
+    app: flask-app
+spec:
+  selector:
+    matchLabels:
+      app: flask-app
+  strategy:
+    type: RollingUpdate
+  replicas: 2
+  template:
+    metadata:
+      name: flask-app
+      labels:
+        name: flask-app
+        app: flask-app
+    spec:
+      containers:
+        - name: flask-app
+          image: coolboi567/todo-flaskapp:0.1
+          env:
+           - name: APP_ENV
+             value: development
+           - name: PORT
+             value: 80
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
