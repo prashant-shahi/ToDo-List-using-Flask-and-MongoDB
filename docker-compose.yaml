@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  flaskapp:
+    build: .
+    image: my-flaskapp
+    ports:
+      - 5000:5000
+    container_name: flask-app
+    environment:
+      - APP_ENV=development
+      - PORT=80
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+    networks:
+      - my-net
+    depends_on:
+      - mongo
+  mongo:
+    image: mvertes/alpine-mongo
+    ports:
+      - 27017:27017
+    networks:
+      - my-net
+
+networks:
+  my-net:
+    driver: bridge
