@@ -2,8 +2,11 @@ from flask import Flask, render_template,request,redirect,url_for # For flask im
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
 from bson.errors import InvalidId # For catching InvalidId exception for ObjectId
+import os
 
-client = MongoClient('localhost', 27017)    #Configure the connection to the database
+mongodb_host = os.environ.get('MONGO_HOST', 'localhost')
+mongodb_port = int(os.environ.get('MONGO_PORT', '27017'))
+client = MongoClient(mongodb_host, mongodb_port)    #Configure the connection to the database
 db = client.camp2016    #Select the database
 todos = db.todo #Select the collection
 
@@ -13,9 +16,9 @@ heading = "ToDo Reminder"
 #modify=ObjectId()
 
 def redirect_url():
-    return request.args.get('next') or \
-           request.referrer or \
-           url_for('index')
+	return request.args.get('next') or \
+		request.referrer or \
+		url_for('index')
 
 @app.route("/list")
 def lists ():
@@ -106,8 +109,8 @@ def search():
 			if not todos_l:
 				return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,error="No such ObjectId is present")
 		except InvalidId as err:
-	        pass
-	        return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,error="Invalid ObjectId format given")
+			pass
+			return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,error="Invalid ObjectId format given")
 	else:
 		todos_l = todos.find({refer:key})
 	return render_template('searchlist.html',todos=todos_l,t=title,h=heading)
@@ -117,5 +120,8 @@ def about():
 	return render_template('credits.html',t=title,h=heading)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+	env = os.environ.get('APP_ENV', 'development')
+	port = int(os.environ.get('PORT', 5000))
+	debug = False if env == 'production' else True
+	app.run(host='0.0.0.0', port=port, debug=debug)
 	# Careful with the debug mode..

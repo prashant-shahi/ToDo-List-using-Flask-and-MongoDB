@@ -19,7 +19,7 @@
 		<div class="alert alert-danger">
 	  		<strong>Error!</strong> {{ error }}
 		</div>
-	{% end %}
+	{% endif %}
 	<hr>
 	{% if todos[0] %}
 	<div span="right">
@@ -59,26 +59,53 @@
 			<td class="desc">{{ todo["desc"] }}</td>
 			<td class="date">{{ todo["date"] }}</td>
 			<td class="pr">{{ todo["pr"] }}</td>
-			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a></td>
-			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}">🗑️</a></td>
+			<td class="func2"><a href="./update?_id={{ todo['_id'] }}">📝</a></td>
 		</tr>
 	{% endfor %}
 	</table>
 	{% else %}
-		<h4>No Tasks in the List !!</h4>
+		<div class="danger">
+			<h4>No Tasks in the List !!</h4>
+		</div>
 	{% endif %}
 	<hr/>
 	<form action="/action" method="POST">
 	<table class="none">
-		<tr>
-			<td><b><big><label>Add a Task : </label></big></b></td>
+		<tr class="row success">
+			<td>
+				<h2>Add a Task</h2>
+			</td>
 		</tr>
-		<tr>
-		<td><input type="text" name="name" placeholder="Taskname" /></td>
-		<td><textarea name="desc" rows="1" cols="30" placeholder="Enter Description here..." required></textarea></td>
-		<td><input type="text" name="date" placeholder="Date" /></td>
-		<td><input type="text" name="pr" placeholder="Priority" /></td>
-		<td><button type="submit"> Create </button></td>
+		<tr class="row">
+			<td class="col-2">
+				<input type="text" name="name" placeholder="Taskname" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-4">
+				<textarea name="desc" rows="2" cols="30" placeholder="Enter Description here..." required></textarea>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input type="date" name="date" placeholder="Date" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<select name="pr">
+					<option selected disabled>Priority</option>
+					<option>Low !</option>
+					<option>Medium !!</option>
+					<option>High !!!</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<button type="submit"> Create </button>
+			</td>
 		</tr>
 	</form>
 	</table>

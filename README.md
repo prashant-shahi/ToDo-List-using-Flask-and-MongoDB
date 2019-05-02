@@ -14,7 +14,7 @@ To-Do-List is mini-project made with Flask and MongoDB. Dockerfile is also avail
 
 	Install Python ( If you don't have already )
 		$ sudo apt-get install python
-		
+
 	Install MongoDB ( Make sure you install it properly )
 		$ sudo apt-get install -y mongodb-org
 
@@ -28,7 +28,7 @@ To-Do-List is mini-project made with Flask and MongoDB. Dockerfile is also avail
 			$ sudo service mongod start
 		2) Stop MongoDB
 			$ sudo service mongod stop
-	
+
 	Run the Flask file(app.py)
 		$ python app.py
 
@@ -43,7 +43,7 @@ To-Do-List is mini-project made with Flask and MongoDB. Dockerfile is also avail
 
 	Pulling light MongoDB Docker image
 		$ docker pull mvertes/alpine-mongo
-	
+
 	Building Flask server docker image
 		$ docker build -t codegeas/flaskapp .
 
@@ -55,9 +55,9 @@ To-Do-List is mini-project made with Flask and MongoDB. Dockerfile is also avail
 
 	Browse with any Browser to the following link and DONE !
 		http://localhost:5000
-	
+
 ###  Running the application
-	
+
 	Running the  docker containers and attach
 		$ docker start -ai mongoclient
 
