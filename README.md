@@ -26,9 +26,9 @@ Install Dependencies of the application (Flask, Bson and PyMongo)
 ```
 Run MongoDB
 1) Start MongoDB
-	$ sudo service mongod start
+	$ sudo service mongodb start
 2) Stop MongoDB
-	$ sudo service mongod stop
+	$ sudo service mongodb stop
 
 Run the Flask file(app.py)
 	$ python app.py
