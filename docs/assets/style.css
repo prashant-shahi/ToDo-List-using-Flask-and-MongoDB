@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #cecece;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main section.series {
+  padding: 0.5rem 0;
+  width: 50%;
+  background-color: #ffffff;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+main section.series > * {
+  margin: 0 1rem;
+}
+
+main section.series p {
+  font-size: 0.9rem;
+}
+
+main div.posts {
+  width: 50%;
+}
+
+main div.posts div.post {
+  background-color: #ffffff;
+  margin: 0.5rem auto;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+main div.posts div.post div.post-header > * {
+  margin: 0;
+  line-height: 1;
+}
+
+main div.posts div.post div.post-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+main div.posts div.post div.post-header small {
+  font-size: 0.6rem;
+}
+
+main div.posts div.post div.post-tags {
+  margin: 0.5rem 0;
+}
+
+main div.posts div.post div.post-tags span {
+  margin-right: 0.25rem;
+  color: #0075ff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background-color: rgba(0, 117, 255, 0.2);
+  border-radius: 1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+main div.posts div.post div.video-js {
+  position: relative;
+}
+
+main div.posts div.post div.video-js video#post-video_html5_api {
+  width: 100%;
+  height: 100%;
+}
+
+main div.posts div.post div.video-js button.vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+main div.posts div.post div.post-footer div.icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+main div.posts div.post div.post-footer div.icons {
+  margin: 0.25rem 0 0 0;
+}
+
+main div.posts div.post div.post-footer div.icons button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-right: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+main div.posts div.post div.post-footer div.icons button img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 576px) {
+  main section.series {
+    width: 90%;
+  }
+  main div.posts {
+    width: 90%;
+  }
+  main div.posts div.post div.post-footer div.icons button {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+body div.powered-by-incredible {
+  position: sticky;
+  bottom: 5px;
+  float: left;
+  margin-left: 5px;
+  padding: 5px 10px;
+  width: fit-content;
+  background-color: rgba(256, 256, 256, 0.65);
+  border-radius: 15px;
+}
+
+body div.powered-by-incredible a.incredible-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body div.powered-by-incredible a.incredible-link span {
+  font-size: small;
+}
+
+body div.powered-by-incredible a.incredible-link img {
+  height: 30px;
+  width: auto;
+}
