@@ -1,0 +1,37 @@
+name: e2e-docker
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+
+  e2e-docker:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'ok-to-test' }}
+    env:
+      DOCKER_TAG: pull-${{ github.event.number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t coolboi567/todo-flaskapp:$DOCKER_TAG .
+
+      - name: Deploy the FlaskApp
+        run: docker-compose up -d --remove-orphans
+
+      - name: Get short commit SHA and display tunnel URL
+        id: get-subdomain
+        run: |
+          subdomain="todo-flaskapp-docker-$(git rev-parse --short HEAD)"
+          echo "URL for tunnelling: http://$subdomain.loca.lt"
+          echo "::set-output name=subdomain::$subdomain"
+
+      - name: Start tunnel
+        env:
+          SUBDOMAIN: ${{ steps.get-subdomain.outputs.subdomain }}
+        run: |
+          npm install -g localtunnel
+          port=$(docker port flask-app | grep -E '[0-9]{4,5}' -o | head -n 1)
+          lt -p $port -s $SUBDOMAIN

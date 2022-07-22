@@ -1,0 +1,59 @@
+name: e2e-k3s
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+
+  e2e-k3s:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'ok-to-test' }}
+    env:
+      DOCKER_TAG: pull-${{ github.event.number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t coolboi567/todo-flaskapp:$DOCKER_TAG .
+
+      - name: Create a k3s cluster
+        uses: AbsaOSS/k3d-action@v2
+        with:
+          cluster-name: "flaskapp"
+
+      - name: Inject the images to the cluster
+        run: k3d image import coolboi567/todo-flaskapp:$DOCKER_TAG -c flaskapp
+
+      - name: Deploy the FlaskApp
+        run: |
+          # create flaskapp namespace
+          kubectl create ns flaskapp
+          
+          # installing FlaskApp using helm
+          helm install my-release -n flaskapp ./helm \
+            --wait \
+            --timeout 10m0s \
+            --set flaskapp.service.type=LoadBalancer \
+            --set flaskapp.image.tag=$DOCKER_TAG
+          
+          # get pods, services and the container images
+          kubectl get pods -n flaskapp
+          kubectl get svc -n flaskapp
+
+      - name: Get short commit SHA and display tunnel URL
+        id: get-subdomain
+        run: |
+          subdomain="todo-flaskapp-k3s-$(git rev-parse --short HEAD)"
+          echo "URL for tunnelling: http://$subdomain.loca.lt"
+          echo "::set-output name=subdomain::$subdomain"
+
+      - name: Start tunnel
+        env:
+          SUBDOMAIN: ${{ steps.get-subdomain.outputs.subdomain }}
+        run: |
+          npm install -g localtunnel
+          host=$(kubectl get svc -n flaskapp | grep flaskapp | tr -s ' ' | cut -d" " -f4)
+          port=$(kubectl get svc -n flaskapp | grep flaskapp | tr -s ' ' | cut -d" " -f5 | cut -d":" -f1)
+          lt -p $port -l $host -s $SUBDOMAIN
