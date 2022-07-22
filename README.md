@@ -32,7 +32,7 @@ Run MongoDB
 	$ sudo service mongod stop
 
 Run the Flask file(app.py)
-	$ python app.py
+	$ FLASK_ENV=development python app.py
 
 Go to http://localhost:5000 with any of browsers and DONE !!
 	$ open http://localhost:5000
@@ -45,7 +45,7 @@ To exit press Ctrl+C
 Make sure that you are inside the project directory, where `docker-compose.yaml` file is present. Now, building and running the application server container and mongodb container using `docker-compose` :
 ```
 Building or fetching the necessary images and later, creating and starting containers for the application
-    $ docker-compose up
+    $ docker-compose up -d
 
 Go to http://localhost:5000 with any of browsers and DONE !!
     $ open http://localhost:5000
