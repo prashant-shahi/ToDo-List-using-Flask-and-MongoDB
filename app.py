@@ -49,9 +49,9 @@ def done ():
 	id=request.values.get("_id")
 	task=todos.find({"_id":ObjectId(id)})
 	if(task[0]["done"]=="yes"):
-		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"no"}})
+		todos.update_one({"_id":ObjectId(id)}, {"$set": {"done":"no"}})
 	else:
-		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
+		todos.update_one({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
 	redir=redirect_url()	# Re-directed URL i.e. PREVIOUS URL from where it came into this one
 
 #	if(str(redir)=="http://localhost:5000/search"):
@@ -70,14 +70,14 @@ def action ():
 	desc=request.values.get("desc")
 	date=request.values.get("date")
 	pr=request.values.get("pr")
-	todos.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	todos.insert_one({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
 	return redirect("/list")
 
 @app.route("/remove")
 def remove ():
 	#Deleting a Task with various references
 	key=request.values.get("_id")
-	todos.remove({"_id":ObjectId(key)})
+	todos.delete_one({"_id":ObjectId(key)})
 	return redirect("/")
 
 @app.route("/update")
@@ -94,7 +94,7 @@ def action3 ():
 	date=request.values.get("date")
 	pr=request.values.get("pr")
 	id=request.values.get("_id")
-	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
+	todos.update_one({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "date":date, "pr":pr }})
 	return redirect("/")
 
 @app.route("/search", methods=['GET'])

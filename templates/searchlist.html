@@ -2,9 +2,18 @@
 	<head>
 		<title>{{t}}</title>
 		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
 	</head>
 <body>
-	<h1>{{h}}</h1>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/list" class="{{ a1 }}">ALL</a></li>
+		<li><a href="/" class="{{ a2 }}">Uncompleted</a></li>
+		<li><a href="/completed" class="{{ a3 }}">Completed</a></li>
+		<li style="float:right"><a href="/about">About</a></li>
+	</ul>
 	<hr>
 	{% if todos[0] %}
 	<h3>Result of the Search : ToDO List</h3>
@@ -33,6 +42,5 @@
 		<h4>No Result Found !!</h4>
 	{% endif %}
 	</table>
-	<a href="/">Return to TaskList</a>
 </body>
 </html>
