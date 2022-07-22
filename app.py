@@ -120,8 +120,9 @@ def about():
 	return render_template('credits.html',t=title,h=heading)
 
 if __name__ == "__main__":
-	env = os.environ.get('APP_ENV', 'development')
+	env = os.environ.get('FLASK_ENV', 'development')
 	port = int(os.environ.get('PORT', 5000))
 	debug = False if env == 'production' else True
-	app.run(host='0.0.0.0', port=port, debug=debug)
+	app.run(debug=True)
+	app.run(port=port, debug=debug)
 	# Careful with the debug mode..
