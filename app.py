@@ -124,5 +124,5 @@ if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
 	debug = False if env == 'production' else True
 	app.run(debug=True)
-	app.run(port=port, debug=debug)
 	# Careful with the debug mode..
+	app.run(port=port, debug=debug)
