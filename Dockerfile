@@ -1,4 +1,6 @@
-FROM python:3.9-alpine3.15
+# syntax=docker/dockerfile:1
+
+FROM python:3.10-alpine3.15
 
 LABEL MAINTAINER "Prashant Shahi <me@prashantshahi.dev>"
 
@@ -15,6 +17,4 @@ RUN pip install --user -r requirements.txt
 
 COPY --chown=appuser:appuser . .
 
-ENTRYPOINT ["python"]
-
-CMD ["app.py"]
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]

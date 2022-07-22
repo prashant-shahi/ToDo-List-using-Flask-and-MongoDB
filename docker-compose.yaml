@@ -1,26 +1,24 @@
-version: "3.3"
+version: "3.8"
+
 services:
-  flaskapp:
+  todo-flaskapp:
     image: coolboi567/todo-flaskapp:${DOCKER_TAG:-latest}
     ports:
       - 5000:5000
     container_name: flask-app
     environment:
-      - APP_ENV=development
+      - FLASK_ENV=development
       - PORT=5000
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
-    networks:
-      - my-net
     depends_on:
       - mongo
   mongo:
     image: mvertes/alpine-mongo:latest
+    volumes:
+     - flaskapp:/data/db/
     ports:
       - 27017:27017
-    networks:
-      - my-net
 
-networks:
-  my-net:
-    driver: bridge
+volumes:
+  flaskapp:
