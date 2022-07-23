@@ -125,4 +125,3 @@ if __name__ == "__main__":
 	debug = False if env == 'production' else True
 	app.run(debug=True)
 	app.run(port=port, debug=debug)
-	# Careful with the debug mode..
